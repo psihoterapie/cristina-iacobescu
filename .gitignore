@@ -1,0 +1,15 @@
+﻿# Not linked from the site - keep out of the public repo
+*.docx
+~$*
+
+# Only images used on the website are published
+pics/*
+!pics/logo.png
+!pics/cabi/
+pics/cabi/*
+!pics/cabi/Cabinet_1 copy.jpg
+!pics/me/
+pics/me/*
+!pics/me/MCC Photo Shoot-240221IMG_0291-Enhanced-NR.jpg
+!pics/me/WhatsApp Image 2022-01-29 at 14.01.00.jpeg
+!pics/me/1711135447529.jpg
