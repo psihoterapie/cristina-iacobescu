@@ -291,10 +291,20 @@ function sendContactEmail(form, lang) {
     body: JSON.stringify(payload),
     signal: controller.signal
   })
-    .then(res => res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)))
-    .then(data => {
-      if (String(data.success) !== 'true') throw new Error('Not sent');
-      return data;
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(text => {
+      // FormSubmit may return plain text or JSON — accept any 2xx response
+      try {
+        const data = JSON.parse(text);
+        if (data.success === false || data.success === 'false') throw new Error('Not sent');
+      } catch (e) {
+        // If JSON parse fails it's plain text — treat 2xx as success
+        if (!(e.message === 'Not sent')) return text;
+        throw e;
+      }
     })
     .finally(() => clearTimeout(timer));
 }
