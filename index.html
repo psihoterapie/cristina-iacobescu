@@ -69,9 +69,9 @@
       </div>
 
       <div class="row justify-content-center gy-5 mt-2">
-        <!-- Office photo (twice the width of the portrait photos); on desktop its height matches the text -->
-        <div class="col-12 col-lg-7 text-center order-lg-2">
-          <div class="ci-portrait-wrap ci-portrait-wrap--wide ci-portrait-wrap--match">
+        <!-- Office photo — stretches to fill the full height of the left column (card + buttons) -->
+        <div class="col-12 order-lg-2 d-flex flex-column ci-hero-photo-col" style="padding-top: 10px;">
+          <div class="ci-portrait-wrap ci-portrait-wrap--wide ci-portrait-wrap--match flex-grow-1">
             <img
               src="pics/cabi/Cabinet_1 copy.jpg"
               alt="Cabinetul de psihologie Cristina Iacobescu — spațiu de consiliere"
@@ -83,27 +83,23 @@
           </div>
         </div>
 
-        <!-- Text -->
-        <div class="col-12 col-lg-5 text-center text-lg-start order-lg-1">
-          <div class="ci-hero-text" lang="ro" data-lang-block="ro">
-            <p>Cauți pe cineva cu care să discuți despre o situație curentă din viața ta sau ceva ce te macină?<br>
-            Ești în confuzie cu privire la relațiile din viața ta?<br>
-            Vrei să îți găsești drumul în carieră sau business?<br>
-            Te macină grijile, anxietatea, fricile, trecutul sau potențialul viitor?<br>
-            Ai vrea pur și simplu să îți clarifici niște idei, să iei niște decizii, să te sfătuiești despre niște situații de viață?</p>
-            <p>Mă bucur să te cunosc! Hai să pornim pe acest drum împreună … Fără judecăți. Pentru mine fiecare este eroul din viața sa, iar eu sunt aici să te ascult și să îți ofer susținerea mea în ceea ce îți dorești să faci sau să schimbi. De peste 15 ani lucrez cu oamenii în diverse ipostaze – ca lider în corporații, coach în zona de business, dezvoltare personală, psiholog clinician și psihoterapeut. Din toate aceste experiențe am învățat să cred în învățare continuă și să mai cred și în tine, persoana care vrea să fie ghidată, sau doar să se deschidă, pentru că știu că fiecare dintre noi are chiar înăuntrul său, toate resursele necesare pentru a-și atinge potențialul. Te invit să-mi povestești mai multe despre tine 😊.</p>
+        <!-- Text card + buttons in same column so photo height spans both -->
+        <div class="col-12 order-lg-1 d-flex flex-column ci-hero-text-col">
+          <div class="ci-card text-start flex-grow-1">
+            <div class="ci-hero-text" lang="ro" data-lang-block="ro">
+              <p>Cauți pe cineva cu care să discuți despre o situație curentă din viața ta sau ceva ce te macină?<br>
+              Ești în confuzie cu privire la relațiile din viața ta?<br>
+              Vrei să îți găsești drumul în carieră sau business?<br>
+              Te macină grijile, anxietatea, fricile, trecutul sau potențialul viitor?<br>
+              Ai vrea pur și simplu să îți clarifici niște idei, să iei niște decizii, să te sfătuiești despre niște situații de viață?</p>
+              <p class="mt-3">Mă bucur să te cunosc! Hai să pornim pe acest drum împreună … Fără judecăți. Pentru mine fiecare este eroul din viața sa, iar eu sunt aici să te ascult și să îți ofer susținerea mea în ceea ce îți dorești să faci sau să schimbi. De peste 15 ani lucrez cu oamenii în diverse ipostaze – ca lider în corporații, coach în zona de business, dezvoltare personală, psiholog clinician și psihoterapeut. Din toate aceste experiențe am învățat să cred în învățare continuă și să mai cred și în tine, persoana care vrea să fie ghidată, sau doar să se deschidă, pentru că știu că fiecare dintre noi are chiar înăuntrul său, toate resursele necesare pentru a-și atinge potențialul. Te invit să-mi povestești mai multe despre tine 😊.</p>
+            </div>
+            <div class="ci-hero-text" lang="en" data-lang-block="en" style="display:none">
+              <p>Are you looking for someone to talk to about a current situation in your life, or something that's been weighing on you? Are you confused about your relationships? Do you want to find your direction in your career or business? Are you weighed down by worry, anxiety, fears, the past, or what the future might hold? Would you simply like to clarify some ideas, make decisions, or get guidance on life situations?</p>
+              <p class="mt-3">I'm delighted to meet you! Let's start this journey together … Without any judgement. For me, every person is the hero of their own life, and I am here to listen and offer my support in whatever you wish to do or change. In the past 15 years, I have been working with people from many different roles — as a leader in corporations, a business coach, a personal development coach, a clinical psychologist and a psychotherapist. From all these circumstances, I learned to believe in continuous learning, and to believe in you, the person who wants to be guided or simply to open up — because I know that each of us already holds within themselves all the resources they need to reach their potential. So, I invite you to tell me more about yourself and what brings you here today 😊.</p>
+            </div>
           </div>
-          <div class="ci-hero-text" lang="en" data-lang-block="en" style="display:none">
-            <p>Are you looking for someone to talk to about a current situation in your life, or something that's been weighing on you? Are you confused about your relationships? Do you want to find your direction in your career or business? Are you weighed down by worry, anxiety, fears, the past, or what the future might hold? Would you simply like to clarify some ideas, make decisions, or get guidance on life situations?</p>
-            <p>I'm delighted to meet you! Let's start this journey together … Without any judgement. For me, every person is the hero of their own life, and I am here to listen and offer my support in whatever you wish to do or change. In the past 15 years, I have been working with people from many different roles — as a leader in corporations, a business coach, a personal development coach, a clinical psychologist and a psychotherapist. From all these circumstances, I learned to believe in continuous learning, and to believe in you, the person who wants to be guided or simply to open up — because I know that each of us already holds within themselves all the resources they need to reach their potential. So, I invite you to tell me more about yourself and what brings you here today 😊.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Buttons (below the text, outside the photo/text row so the photo matches the paragraph height) -->
-      <div class="row justify-content-center">
-        <div class="col-12 text-center">
-          <div class="ci-hero-actions mt-4">
+          <div class="ci-hero-actions mt-4 text-center">
             <a href="#contact" class="ci-btn ci-btn--primary" data-ro="Programează o consultație" data-en="Book a Consultation">Programează o consultație</a>
             <a href="#services" class="ci-btn ci-btn--ghost ms-3" data-ro="Descoperă serviciile" data-en="Explore services">Descoperă serviciile</a>
           </div>
@@ -124,10 +120,10 @@
         <div class="ci-section-divider" aria-hidden="true"></div>
       </div>
 
-      <div class="row gy-4 mt-2 align-items-start">
+      <div class="row gy-4 mt-2 align-items-start align-items-md-stretch">
         <!-- Portrait photo -->
-        <div class="col-12 col-md-4 col-lg-4 text-center">
-          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top">
+        <div class="col-12 col-md-4 col-lg-4 text-center order-1 order-md-1 d-md-flex flex-md-column align-items-md-center">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-portrait-wrap--full-mobile ci-portrait-wrap--match-md">
             <img
               src="pics/me/MCC Photo Shoot-240221IMG_0291-Enhanced-NR.jpg"
               alt="Cristina Iacobescu — psiholog clinician și psihoterapeut"
@@ -140,7 +136,7 @@
         </div>
 
         <!-- Intro card -->
-        <div class="col-12 col-md-8 col-lg-8">
+        <div class="col-12 col-md-8 col-lg-8 order-2 order-md-2 d-md-flex flex-md-column align-items-md-center">
           <div class="ci-card">
             <p class="ci-card-body" lang="ro" data-lang-block="ro">Salutare, permite-mi să mă prezint: Sunt <strong>Cristina Iacobescu</strong> și întotdeauna am avut un interes pentru dezvoltarea personală, procesul de schimbare și relațiile interpersonale, ceea ce m-a condus către psihologie, după peste nouă ani petrecuți în roluri de leadership (și peste 15 in corporații, responsabilă printre altele și de coaching, dezvoltarea și instruirea angajaților în mediul corporativ). Parcursul meu include formare în terapia cognitiv-comportamentală, terapia schemelor, intervenții de scurtă durată, intervenții pentru tulburările de comportament alimentar și experiență clinică în lucrul cu persoane care se confruntă cu anxietate, depresie, probleme de adaptare la situații noi sau dificile, suport în cazul unor dizabilități sau boli cronice, dificultăți în mediul de muncă, provocări relaționale și de cuplu (inclusiv LGBTQ). Practica mea și lucrul cu persoane aflate în procese de dezvoltare, schimbare sau dificultate emoțională mi-au consolidat convingerea că fiecare persoană deține deja resursele de care are nevoie, iar rolul meu este să o ajut să le descopere și să le valorifice.</p>
             <p class="ci-card-body" lang="en" data-lang-block="en" style="display:none">Hello, allow me to introduce myself: I am <strong>Cristina Iacobescu</strong>, and I have always had a deep interest in personal development, the process of change and interpersonal relationships — an interest that led me to psychology after more than nine years in leadership roles (and over 15 years in the corporate world, where I was responsible, among other things, for coaching, employee development and training). My background includes training in cognitive-behavioural therapy, schema therapy, short-term interventions, and interventions for eating disorders, as well as clinical experience working with people facing anxiety, depression, difficulties adapting to new or challenging situations, support in living with disabilities or chronic illness, workplace difficulties, and relationship and couple challenges (including LGBTQ). My practice and my work with people going through processes of growth, change or emotional difficulty have reinforced my belief that every person already holds within themselves the resources they need — and that my role is to help them discover and make the most of those resources.</p>
@@ -163,7 +159,7 @@
         </div>
 
         <!-- Certifications, courses & experience — full width -->
-        <div class="col-12">
+        <div class="col-12 order-4 order-md-3">
           <div class="ci-card ci-card--info">
             <!-- Icon + title on one line -->
             <div class="ci-card-head">
@@ -190,23 +186,26 @@
           </div>
         </div>
 
-        <!-- Badge (left) -->
-        <div class="col-12 col-md-4 d-flex align-items-start">
-          <iframe
-            src="https://www.verificapsiholog.ro/api/psiholog-badge/31484"
-            width="300"
-            height="396"
-            frameborder="0"
-            scrolling="no"
-            title="Psiholog activ – Iacobescu Cristina"
-            style="border:none;border-radius:8px;overflow:hidden;max-width:100%;"
-            loading="lazy"
-          ></iframe>
+        <!-- Badge (left) — framed like a portrait -->
+        <div class="col-12 col-md-4 d-flex align-items-start order-3 order-md-5 justify-content-center justify-content-md-start align-items-md-start">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-badge-wrap">
+            <iframe
+              src="https://www.verificapsiholog.ro/api/psiholog-badge/31484"
+              width="300"
+              height="396"
+              frameborder="0"
+              scrolling="no"
+              title="Psiholog activ – Iacobescu Cristina"
+              style="border:none;border-radius:var(--ci-radius-lg);overflow:hidden;max-width:100%;display:block;position:relative;z-index:1;"
+              loading="lazy"
+            ></iframe>
+            <span class="ci-portrait-ring" aria-hidden="true"></span>
+          </div>
         </div>
 
         <!-- Second portrait photo — natural size, right-aligned, rounded corners -->
-        <div class="col-12 col-md-8 d-flex justify-content-end align-items-start">
-          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top" style="max-width:704px;width:100%;margin-right:10px;">
+        <div class="col-12 col-md-8 align-items-start order-5 order-md-4" style="text-align:left;">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-landscape-wrap" style="max-width:697px;margin-right:10px;">
             <img
               src="pics/me/1711135447529.jpg"
               alt="Cristina Iacobescu — consiliere business, leadership și training"
@@ -219,7 +218,7 @@
         </div>
 
         <!-- Business, leadership & training (separate card) -->
-        <div class="col-12 align-self-start">
+        <div class="col-12 align-self-start order-6 order-md-6">
           <div class="ci-card ci-card--info">
             <div class="ci-card-head">
               <div class="ci-card-icon" aria-hidden="true">
@@ -294,7 +293,7 @@
 
         <!-- Portrait photo -->
         <div class="col-12 col-md-4 text-center d-flex align-items-center justify-content-center">
-          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-portrait-wrap--full-mobile">
             <img
               src="pics/me/WhatsApp Image 2022-01-29 at 14.01.00.jpeg"
               alt="Cristina Iacobescu — psiholog clinician și psihoterapeut"

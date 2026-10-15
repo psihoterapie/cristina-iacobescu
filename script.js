@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initContactForm();
   initFooterYear();
+  initHashScroll();
 });
 
 /* ─── 1. Skip link (accessibility) ───────────────────────── */
@@ -146,6 +147,14 @@ function initActiveSection() {
   sections.forEach(s => observer.observe(s));
 }
 
+/* Extra px to scroll past the nav for each section (positive = further down) */
+const SCROLL_OFFSETS = {
+  '#home':     0,
+  '#about':    50,
+  '#services': 50,
+  '#contact':  50,
+};
+
 /* ─── 5. Smooth scroll + close mobile menu ───────────────── */
 function initSmoothScroll() {
   // Close Bootstrap collapse when a nav link is clicked on mobile
@@ -154,7 +163,8 @@ function initSmoothScroll() {
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
-      const target = document.querySelector(anchor.getAttribute('href'));
+      const hash   = anchor.getAttribute('href');
+      const target = document.querySelector(hash);
       if (!target) return;
 
       e.preventDefault();
@@ -164,15 +174,37 @@ function initSmoothScroll() {
         toggler?.click();
       }
 
-      // Scroll with offset for fixed nav
-      const navH = parseInt(getComputedStyle(document.documentElement)
+      // Scroll with offset for fixed nav + per-section extra
+      const navH        = parseInt(getComputedStyle(document.documentElement)
         .getPropertyValue('--ci-nav-h'), 10) || 70;
-      const top = target.getBoundingClientRect().top + window.scrollY - navH;
+      const extraOffset = SCROLL_OFFSETS[hash] ?? 0;
+      const top         = target.getBoundingClientRect().top + window.scrollY - navH + extraOffset;
 
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 }
+
+/* ─── 5b. Handle hash in URL on page load (works on file:// too) ── */
+function initHashScroll() {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const target = document.querySelector(hash);
+  if (!target) return;
+
+  const navH        = parseInt(getComputedStyle(document.documentElement)
+    .getPropertyValue('--ci-nav-h'), 10) || 70;
+  const extraOffset = SCROLL_OFFSETS[hash] ?? 0;
+
+  // Let the browser do its native jump first, then instantly correct position
+  const correct = () => {
+    const top = target.getBoundingClientRect().top + window.scrollY - navH + extraOffset;
+    window.scrollTo({ top, behavior: 'instant' });
+  };
+  window.addEventListener('scroll', correct, { once: true });
+}
+
 
 /* ─── 6. Contact form ─────────────────────────────────────── */
 function initContactForm() {

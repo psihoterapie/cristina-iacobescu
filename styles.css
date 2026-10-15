@@ -262,6 +262,22 @@ p { margin: 0; }
   }
 }
 
+/* About first portrait: on md+ stretch to match the right column height */
+@media (min-width: 768px) {
+  .ci-portrait-wrap--match-md {
+    display: block;
+    height: 100%;
+    flex-grow: 1;
+    margin: 0 0 0 -7px;
+  }
+  .ci-portrait-wrap--match-md .ci-portrait {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .ci-portrait {
   display: block;
   width: 100%;
@@ -292,7 +308,8 @@ p { margin: 0; }
   position: absolute;
   inset: -10px -10px 10px 10px;
   border-radius: var(--ci-radius-lg);
-  border: 1.5px solid rgba(170, 160, 216, 0.45);
+  border: 1px solid var(--ci-border);
+  background: var(--ci-white);
   z-index: 0;
   pointer-events: none;
 }
@@ -346,6 +363,27 @@ p { margin: 0; }
   font-weight: 600;
 }
 @media (max-width: 991px) { .ci-hero-text { margin: 0 auto; } }
+
+@media (max-width: 767px) {
+  .ci-portrait-wrap--full-mobile { display: block; max-width: calc(100% - 10px); }
+}
+
+.ci-badge-wrap { max-width: 300px; }
+@media (min-width: 768px) { .ci-badge-wrap { margin-right: auto; } }
+
+.ci-landscape-wrap { width: 100%; }
+@media (min-width: 768px) {
+  .ci-landscape-wrap { width: auto; margin-left: 27px; }
+}
+
+
+.order-6 { order: 6 !important; }
+@media (min-width: 768px) { .order-md-6 { order: 6 !important; } }
+
+@media (min-width: 992px) {
+  .ci-hero-photo-col { flex: 0 0 54.17%; max-width: 54.17%; }
+  .ci-hero-text-col  { flex: 0 0 45.83%; max-width: 45.83%; }
+}
 
 /* Compass ring decorative element */
 .ci-compass-ring {
