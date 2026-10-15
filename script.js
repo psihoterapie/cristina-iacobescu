@@ -230,11 +230,10 @@ function initContactForm() {
 
 /*
  * Sends the form via FormSubmit (https://formsubmit.co) – a free form-to-email
- * relay over HTTPS. The message goes to CONTACT_TO and a copy to CONTACT_CC.
+ * relay over HTTPS. The message goes to CONTACT_TO.
  * The first submission triggers a one-time activation email to CONTACT_TO.
  */
-const CONTACT_TO = 'cristinaiacobescu@gmail.com';
-const CONTACT_CC = 'cristina_iacobescu@yahoo.com';
+const CONTACT_TO = 'cristina_iacobescu@yahoo.com';
 
 function sendContactEmail(form, lang) {
   const val = sel => form.querySelector(sel)?.value.trim() || '';
@@ -247,7 +246,6 @@ function sendContactEmail(form, lang) {
     'Mesaj / Message':   val('#fieldMessage'),
     'Limba / Language':  lang === 'ro' ? 'Română' : 'English',
     _subject:  `Mesaj nou de pe site – ${name}`,
-    _cc:       CONTACT_CC,
     _template: 'table',
     _captcha:  'false'
   };
