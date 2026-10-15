@@ -271,12 +271,20 @@ function sendContactEmail(form, lang) {
   const val = sel => form.querySelector(sel)?.value.trim() || '';
   const name = val('#fieldName');
 
+  const bucharestTime = new Intl.DateTimeFormat('ro-RO', {
+    timeZone: 'Europe/Bucharest',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false
+  }).format(new Date());
+
   const payload = {
     'Nume / Name':       name,
     'email':             val('#fieldEmail'),   // FormSubmit uses this as Reply-To
     'Telefon / Phone':   val('#fieldPhone') || '-',
     'Mesaj / Message':   val('#fieldMessage'),
     'Limba / Language':  lang === 'ro' ? 'Română' : 'English',
+    'Trimis la (București)': bucharestTime,
     _subject:  `Mesaj nou de pe site – ${name}`,
     _template: 'table',
     _captcha:  'false'
