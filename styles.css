@@ -38,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--ci-nav-h);
+  scroll-padding-top: calc(var(--ci-nav-h) - 20px);
   font-size: 16px;
 }
 
@@ -68,7 +68,7 @@ ul { padding: 0; margin: 0; list-style: none; }
 /* ── 3. Typography ─────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--ci-font-display);
-  font-weight: 400;
+  font-weight: 400 !important;
   line-height: 1.2;
   color: var(--ci-plum);
   margin: 0;
@@ -90,6 +90,19 @@ p { margin: 0; }
   border-bottom: 1px solid var(--ci-border);
   height: var(--ci-nav-h);
   transition: box-shadow var(--ci-transition);
+}
+
+/* Mobile menu dropdown — solid white background */
+@media (max-width: 991px) {
+  .ci-navbar .navbar-collapse.show,
+  .ci-navbar .navbar-collapse.collapsing {
+    background-color: var(--ci-white);
+    border-top: 1px solid var(--ci-border);
+    border-bottom: 1px solid var(--ci-border);
+    box-shadow: var(--ci-shadow-md);
+    padding: 12px 16px 16px;
+    margin: 0 -12px;
+  }
 }
 
 .ci-navbar.scrolled {
@@ -193,7 +206,7 @@ p { margin: 0; }
   align-items: center;
   overflow: hidden;
   background-color: var(--ci-bg);
-  padding: calc(var(--ci-nav-h) + 40px) 0 80px;
+  padding: calc(var(--ci-nav-h) + 15px) 0 80px;
 }
 
 .ci-hero-inner { position: relative; z-index: 2; }
@@ -359,12 +372,53 @@ p { margin: 0; }
 .ci-hero-text p {
   margin-bottom: 0.75rem;
 }
+.ci-hero-text p:has(+ .ci-hero-list) {
+  margin-bottom: 0;
+}
 .ci-hero-text p:last-child {
   margin-bottom: 0;
+}
+.ci-hero-text p + .ci-hero-list {
+  margin-top: 4px;
 }
 .ci-hero-text strong {
   color: var(--ci-plum);
   font-weight: 600;
+}
+
+@media (min-width: 992px) {
+  .ci-hero-card { padding: 15px 28px 20px !important; }
+}
+
+.ci-hero-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ci-hero-list li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 4px;
+  font-size: 0.92rem;
+  color: var(--ci-text-muted);
+  line-height: 1.5;
+}
+.ci-hero-list li:first-child {
+  margin-top: 4px;
+}
+.ci-hero-list li:last-child {
+  margin-bottom: 0;
+}
+.ci-hero-list + p {
+  margin-top: 8px !important;
+}
+.ci-hero-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ci-sage);
+  font-size: 0.75rem;
+  top: 3px;
 }
 @media (max-width: 991px) { .ci-hero-text { margin: 0 auto; } }
 
@@ -375,9 +429,15 @@ p { margin: 0; }
 .ci-badge-wrap { max-width: 300px; }
 @media (min-width: 768px) { .ci-badge-wrap { margin-right: auto; } }
 
-.ci-landscape-wrap { width: 100%; }
+.ci-landscape-wrap { width: calc(100% - 20px); margin-left: 10px; }
 @media (min-width: 768px) {
-  .ci-landscape-wrap { width: auto; margin-left: 27px; }
+  .ci-landscape-wrap { width: auto; max-width: 697px; margin-left: 27px; }
+}
+
+/* Hero office photo: align with card margins on mobile */
+.ci-hero-photo-wrap { width: 100%; }
+@media (max-width: 767px) {
+  .ci-hero-photo-wrap { width: calc(100% - 20px); margin-left: 10px; }
 }
 
 
@@ -387,6 +447,15 @@ p { margin: 0; }
 @media (min-width: 992px) {
   .ci-hero-photo-col { flex: 0 0 54.17%; max-width: 54.17%; }
   .ci-hero-text-col  { flex: 0 0 45.83%; max-width: 45.83%; }
+}
+
+/* Hero row: 16px gap below divider, 32px gap between stacked columns on mobile */
+.ci-hero-row {
+  margin-top: 0 !important;
+  gap: 32px 0;
+}
+.ci-hero-row > [class*="col-"] {
+  padding-top: 0;
 }
 
 /* Compass ring decorative element */
@@ -411,10 +480,16 @@ p { margin: 0; }
 
 /* ── 6. Shared section styles ──────────────────────────────── */
 .ci-section {
-  padding: 76px 0 96px;
+  padding: 40px 0 96px;
 }
 .ci-section--light {
   background-color: var(--ci-bg-alt);
+}
+
+/* About and Services get 10px extra top padding */
+#about.ci-section,
+#services.ci-section {
+  padding-top: 50px;
 }
 
 .ci-section-header {
@@ -435,18 +510,33 @@ p { margin: 0; }
   width: 44px;
   height: 2px;
   background: var(--ci-purple);
-  margin: 16px auto;
+  margin: 16px auto 30px;
   border-radius: 2px;
 }
 
 .ci-section-intro {
   color: var(--ci-text-muted);
-  max-width: 780px;
+  max-width: 840px;
   margin: 0 auto;
   font-size: 0.9rem;
 }
+@media (max-width: 767px) {
+  .ci-section-intro {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 /* Full-width variant (Contact intro): uses the whole content width */
-.ci-section-intro--full { max-width: none; }
+.ci-section-intro--full {
+  max-width: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+/* Line break between the two sentences — visible on large screens only */
+.ci-intro-break { display: none; }
+@media (min-width: 992px) {
+  .ci-intro-break { display: block; }
+}
 
 
 
@@ -670,7 +760,7 @@ p { margin: 0; }
 .ci-contact-info {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   height: 100%;
 }
 
@@ -753,7 +843,7 @@ a.ci-contact-value:focus-visible {
   background: var(--ci-white);
   border: 1px solid var(--ci-border);
   border-radius: var(--ci-radius-lg);
-  padding: 40px;
+  padding: 40px 40px 20px;
 }
 
 .ci-form-label {
@@ -800,7 +890,6 @@ a.ci-contact-value:focus-visible {
 .ci-form-feedback {
   margin-top: 12px;
   font-size: 0.875rem;
-  min-height: 20px;
   border-radius: var(--ci-radius-sm);
 }
 .ci-form-feedback.success {
@@ -895,16 +984,18 @@ a.ci-contact-value:focus-visible {
 
 /* ── 13. Responsive adjustments ────────────────────────────── */
 @media (max-width: 991px) {
-  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) + 20px) 0 60px; }
-  .ci-section { padding: 52px 0 72px; }
-  .ci-form { padding: 28px 24px; }
+  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) - 16px) 0 60px; }
+  .ci-section { padding: 16px 0 72px; }
+  .ci-form { padding: 28px 24px 18px; }
 }
 
 @media (max-width: 767px) {
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
-  .ci-section { padding: 36px 0 56px; }
+  .ci-hero { padding: calc(var(--ci-nav-h) + 35px) 0 60px; }
+  .ci-section { padding: 41px 0 56px; }
+  #about.ci-section, #services.ci-section { padding-top: 41px; }
   .ci-card { padding: 24px 20px; }
   .ci-service-card { padding: 28px 22px; }
   .ci-footer { padding: 40px 0 0; }
@@ -917,7 +1008,7 @@ a.ci-contact-value:focus-visible {
   .ci-nav-logo { width: 200px; height: 56px; }
   h1 { font-size: 2.2rem; }
   h2 { font-size: 1.7rem; }
-  .ci-form { padding: 22px 16px; }
+  .ci-form { padding: 22px 16px 12px; }
 }
 
 /* ── 14. Active nav link highlight (JS-driven) ─────────────── */

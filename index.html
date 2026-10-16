@@ -68,10 +68,10 @@
         <div class="ci-section-divider" aria-hidden="true"></div>
       </div>
 
-      <div class="row justify-content-center gy-5 mt-2">
+      <div class="row justify-content-center mt-0 ci-hero-row">
         <!-- Office photo — stretches to fill the full height of the left column (card + buttons) -->
         <div class="col-12 order-lg-2 d-flex flex-column ci-hero-photo-col" style="padding-top: 10px;">
-          <div class="ci-portrait-wrap ci-portrait-wrap--wide ci-portrait-wrap--match flex-grow-1">
+          <div class="ci-portrait-wrap ci-portrait-wrap--wide ci-portrait-wrap--match ci-hero-photo-wrap flex-grow-1">
             <img
               src="pics/cabi/Cabinet_1 copy.jpg"
               alt="Cabinetul de psihologie Cristina Iacobescu — spațiu de consiliere"
@@ -85,14 +85,16 @@
 
         <!-- Text card + buttons in same column so photo height spans both -->
         <div class="col-12 order-lg-1 d-flex flex-column ci-hero-text-col">
-          <div class="ci-card text-start flex-grow-1">
+          <div class="ci-card text-start flex-grow-1 ci-hero-card">
             <div class="ci-hero-text" lang="ro" data-lang-block="ro">
-              <p>Cauți pe cineva cu care să discuți despre o situație curentă din viața ta? Ești tensionat, te macină grijile, anxietatea, fricile, trecutul sau potențialul viitor, dormi prost?<br>
-              Emoțiile sunt la cote maxime sau le ascuzi? Ești în confuzie cu privire la relațiile din viața ta?<br>
-              Vrei să îți găsești drumul în carieră sau business? Ai obosit sau te concentrezi greu?<br>
-              Simți că acționezi impulsiv în legătură cu mâncarea, banii sau altceva? Ai anumite comportamente compulsive pe care ai vrea să le înțelegi și / sau schimbi?<br>
-              Ai vrea pur și simplu să îți clarifici niște idei, să iei niște decizii, să te sfătuiești despre niște situații de viață?</p>
-              <p class="mt-3">Mă bucur să te cunosc! Te invit pe canapea și să explorăm acest drum împreună … fără judecăți. Pentru mine fiecare este eroul din viața sa, iar eu sunt aici să te ascult și să îți ofer susținerea mea în ceea ce îți dorești să faci sau să schimbi. De peste 15 ani lucrez cu oamenii în diverse ipostaze – ca lider în corporații, coach în zona de business, dezvoltare personală, psiholog clinician și psihoterapeut. Din toate aceste experiențe am învățat să cred în învățare continuă și să mai cred și în tine, persoana care vrea să fie ghidată, sau doar să se deschidă, pentru că știu că fiecare dintre noi are chiar înăuntrul său, toate resursele necesare pentru a-și atinge potențialul. Te invit să-mi povestești mai multe despre tine 😊.</p>
+              <p>Cauți pe cineva cu care să discuți despre o situație curentă din viața ta?</p>
+              <ul class="ci-hero-list">
+                <li>Ești tensionat, te macină grijile, anxietatea, fricile, trecutul sau potențialul viitor, dormi prost? Ești trist, iritabil, furios, emoțiile sunt la cote maxime sau le ascunzi?</li>
+                <li>Ești în confuzie cu privire la relațiile din viața ta? Vrei să îți găsești drumul în carieră sau business? Te concentrezi greu, sau ai ajuns să te simți epuizat? Somatizezi fără alte cauze medicale?</li>
+                <li>Simți că acționezi impulsiv în legătură cu banii, mâncarea sau altceva? Ai anumite comportamente compulsive pe care ai vrea să le înțelegi și / sau schimbi?</li>
+                <li>Ai vrea pur și simplu să faci o evaluare sau să îți clarifici niște idei, iei niște decizii, te sfătuiești despre niște situații de viață?</li>
+              </ul>
+              <p class="mt-3">Mă bucur să te cunosc! Te invit pe canapea și să explorăm acest drum împreună … fără judecăți. Pentru mine fiecare persoană este eroul din viața sa, iar eu sunt aici să te ascult și să îți ofer susținerea mea în ceea ce îți dorești să faci sau să schimbi. De peste 15 ani lucrez cu oamenii în diverse ipostaze – ca lider în corporații, coach în zona de business, dezvoltare personală, psiholog clinician și psihoterapeut. Din toate aceste experiențe am învățat să cred în învățare continuă și să mai cred și în tine, persoana care vrea să fie ghidată, sau doar să se deschidă, pentru că știu că fiecare dintre noi are chiar înăuntrul său, toate resursele necesare pentru a-și atinge potențialul. Te invit să-mi povestești mai multe despre tine 😊.</p>
             </div>
             <div class="ci-hero-text" lang="en" data-lang-block="en" style="display:none">
               <p>Are you looking for someone to talk to about a current situation in your life? Are you feeling tense, weighed down by worry, anxiety, fears, the past, or what the future might hold — or sleeping badly?<br>
@@ -103,7 +105,7 @@
               <p class="mt-3">I'm delighted to meet you! I invite you to take a seat and let's explore this journey together … without any judgement. For me, every person is the hero of their own life, and I am here to listen and offer my support in whatever you wish to do or change. In the past 15 years, I have been working with people from many different roles — as a leader in corporations, a business coach, a personal development coach, a clinical psychologist and a psychotherapist. From all these circumstances, I learned to believe in continuous learning, and to believe in you, the person who wants to be guided or simply to open up — because I know that each of us already holds within themselves all the resources they need to reach their potential. So, I invite you to tell me more about yourself and what brings you here today 😊.</p>
             </div>
           </div>
-          <div class="ci-hero-actions mt-4 text-center">
+          <div class="ci-hero-actions text-center" style="margin-top:14px">
             <a href="#services" class="ci-btn ci-btn--ghost" data-ro="Descoperă serviciile" data-en="Explore services">Descoperă serviciile</a>
             <a href="#contact" class="ci-btn ci-btn--primary ms-3" data-ro="Programează o consultație" data-en="Book a Consultation">Programează o consultație</a>
           </div>
@@ -119,11 +121,11 @@
   <section id="about" class="ci-section ci-section--light" aria-labelledby="aboutHeading">
     <div class="container">
       <div class="ci-section-header text-center">
-        <h2 id="aboutHeading" data-ro="Cine sunt? Despre mine" data-en="Who I am: About Me">Cine sunt? Despre mine</h2>
+        <h2 id="aboutHeading" data-ro="Despre mine" data-en="About Me">Despre mine</h2>
         <div class="ci-section-divider" aria-hidden="true"></div>
       </div>
 
-      <div class="row gy-4 mt-2 align-items-start align-items-md-stretch">
+      <div class="row gy-4 align-items-start align-items-md-stretch">
         <!-- Portrait photo -->
         <div class="col-12 col-md-4 col-lg-4 text-center order-1 order-md-1 d-md-flex flex-md-column align-items-md-center">
           <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-portrait-wrap--full-mobile ci-portrait-wrap--match-md">
@@ -212,7 +214,7 @@
 
         <!-- Second portrait photo — natural size, right-aligned, rounded corners -->
         <div class="col-12 col-md-8 align-items-start order-5 order-md-4" style="text-align:left;">
-          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-landscape-wrap" style="max-width:697px;margin-right:10px;">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-landscape-wrap" style="max-width:697px;">
             <img
               src="pics/me/1711135447529.jpg"
               alt="Cristina Iacobescu — consiliere business, leadership și training"
@@ -256,7 +258,7 @@
   <section id="services" class="ci-section" aria-labelledby="servicesHeading">
     <div class="container">
       <div class="ci-section-header text-center">
-        <h2 id="servicesHeading" data-ro="Ce ofer: Servicii Psihologice Calificate" data-en="What I Offer: Qualified Psychological Services">Ce ofer: Servicii Psihologice Calificate</h2>
+        <h2 id="servicesHeading" data-ro="Ce ofer: servicii psihologice calificate" data-en="What I Offer: Qualified Psychological Services">Ce ofer: servicii psihologice calificate</h2>
         <div class="ci-section-divider" aria-hidden="true"></div>
         <p class="ci-section-intro" data-ro="Lucrez cu adulți și adolescenți. Funcționez în baza: Atestat de liberă practică în Psihologie Clinică, treapta Autonom și Atestat de liberă practică în Psihoterapie – orientare Cognitiv-Comportamentală, treapta Supervizare (Colegiul Psihologilor din România, cod parafă: 31484) – asociat cu Iacobescu Cristina, Cabinet Individual de Psihologie, înregistrat la Colegiul Psihologilor din România (10B15089 / 735 din 25.06.2024)." data-en="I work with adults and adolescents. I practice under: Licence to practise Clinical Psychology, Autonomous Level, and Licence to practise Psychotherapy – Cognitive-Behavioural orientation, Supervision Level (Romanian Board of Psychologists, stamp code: 31484) – affiliated with Iacobescu Cristina, Individual Psychology Practice, registered with the Romanian Board of Psychologists (10B15089 / 735, 25.06.2024).">Lucrez cu adulți și adolescenți. Funcționez în baza: Atestat de liberă practică în Psihologie Clinică, treapta Autonom și Atestat de liberă practică în Psihoterapie – orientare Cognitiv-Comportamentală, treapta Supervizare (Colegiul Psihologilor din România, cod parafă: 31484) – asociat cu Iacobescu Cristina, Cabinet Individual de Psihologie, înregistrat la Colegiul Psihologilor din România (10B15089 / 735 din 25.06.2024).</p>
       </div>
@@ -299,7 +301,7 @@
 
         <!-- Portrait photo -->
         <div class="col-12 col-md-4 text-center d-flex align-items-center justify-content-center">
-          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-portrait-wrap--full-mobile">
+          <div class="ci-portrait-wrap ci-portrait-wrap--ring-top ci-portrait-wrap--full-mobile ci-hero-photo-wrap">
             <img
               src="pics/me/WhatsApp Image 2022-01-29 at 14.01.00.jpeg"
               alt="Cristina Iacobescu — psiholog clinician și psihoterapeut"
@@ -320,13 +322,15 @@
   <section id="contact" class="ci-section ci-section--light" aria-labelledby="contactHeading">
     <div class="container">
       <div class="ci-section-header text-center">
-        <span class="ci-section-label" data-ro="Hai să vorbim" data-en="Let's talk">Hai să vorbim</span>
         <h2 id="contactHeading" data-ro="Contact" data-en="Contact">Contact</h2>
         <div class="ci-section-divider" aria-hidden="true"></div>
-        <p class="ci-section-intro ci-section-intro--full" data-ro="Pune o întrebare sau realizează o programare prin formularul de contact, email sau WhatsApp. Răspund în cel mai scurt timp posibil." data-en="Ask a question or book an appointment through the contact form, email or WhatsApp. I will respond as soon as possible.">Pune o întrebare sau realizează o programare prin formularul de contact, email sau WhatsApp. Răspund în cel mai scurt timp posibil.</p>
+        <p class="ci-section-intro ci-section-intro--full">
+          <span data-lang-block="ro">Hai să vorbim. Pune o întrebare sau realizează o programare prin formularul de contact, email sau WhatsApp.<br class="ci-intro-break"> În general răspund în cel mai scurt timp posibil (dar uneori este posibil să nu pot imediat, așa că te rog acordă-mi 24 până la 48 ore).</span>
+          <span data-lang-block="en" style="display:none">Let's Talk. Ask a question or book an appointment through the contact form, email or WhatsApp.<br class="ci-intro-break"> I usually respond as soon as possible (but sometimes I may not be able to immediately, so please allow me 24 to 48 hours).</span>
+        </p>
       </div>
 
-      <div class="row gy-5 mt-2">
+      <div class="row gy-5">
 
         <!-- Contact info -->
         <div class="col-12 col-lg-5">

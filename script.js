@@ -150,9 +150,9 @@ function initActiveSection() {
 /* Extra px to scroll past the nav for each section (positive = further down) */
 const SCROLL_OFFSETS = {
   '#home':     0,
-  '#about':    50,
-  '#services': 50,
-  '#contact':  50,
+  '#about':    35,
+  '#services': 35,
+  '#contact':  35,
 };
 
 /* ─── 5. Smooth scroll + close mobile menu ───────────────── */
@@ -174,10 +174,11 @@ function initSmoothScroll() {
         toggler?.click();
       }
 
-      // Scroll with offset for fixed nav + per-section extra
+      // Scroll with offset for fixed nav + per-section extra (desktop only)
       const navH        = parseInt(getComputedStyle(document.documentElement)
         .getPropertyValue('--ci-nav-h'), 10) || 70;
-      const extraOffset = SCROLL_OFFSETS[hash] ?? 0;
+      const isSmall     = window.innerWidth <= 767;
+      const extraOffset = isSmall ? 0 : (SCROLL_OFFSETS[hash] ?? 0);
       const top         = target.getBoundingClientRect().top + window.scrollY - navH + extraOffset;
 
       window.scrollTo({ top, behavior: 'smooth' });
@@ -195,7 +196,8 @@ function initHashScroll() {
 
   const navH        = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--ci-nav-h'), 10) || 70;
-  const extraOffset = SCROLL_OFFSETS[hash] ?? 0;
+  const isSmall     = window.innerWidth <= 767;
+  const extraOffset = isSmall ? 0 : (SCROLL_OFFSETS[hash] ?? 0);
 
   // Let the browser do its native jump first, then instantly correct position
   const correct = () => {
