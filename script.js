@@ -177,7 +177,7 @@ function initSmoothScroll() {
       // Scroll with offset for fixed nav + per-section extra (desktop only)
       const navH        = parseInt(getComputedStyle(document.documentElement)
         .getPropertyValue('--ci-nav-h'), 10) || 70;
-      const isSmall     = window.innerWidth <= 767;
+      const isSmall     = window.innerWidth <= 991;
       const extraOffset = isSmall ? 0 : (SCROLL_OFFSETS[hash] ?? 0);
       const top         = target.getBoundingClientRect().top + window.scrollY - navH + extraOffset;
 
@@ -196,7 +196,7 @@ function initHashScroll() {
 
   const navH        = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--ci-nav-h'), 10) || 70;
-  const isSmall     = window.innerWidth <= 767;
+  const isSmall     = window.innerWidth <= 991;
   const extraOffset = isSmall ? 0 : (SCROLL_OFFSETS[hash] ?? 0);
 
   // Let the browser do its native jump first, then instantly correct position

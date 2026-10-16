@@ -66,7 +66,9 @@ a:hover { color: var(--ci-plum); }
 ul { padding: 0; margin: 0; list-style: none; }
 
 /* ── 3. Typography ─────────────────────────────────────────── */
-h1, h2, h3, h4 {
+h1, h2, h3, h4,
+.ci-hero-tagline,
+#aboutHeading, #servicesHeading, #contactHeading, #heroHeading {
   font-family: var(--ci-font-display);
   font-weight: 400 !important;
   line-height: 1.2;
@@ -300,7 +302,7 @@ p { margin: 0; }
 }
 
 /* Homepage photo: on desktop, top and bottom align with the text next to it */
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
   .ci-portrait-wrap--match {
     display: block;
     height: 100%;
@@ -420,7 +422,7 @@ p { margin: 0; }
   font-weight: 600;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
   .ci-hero-card { padding: 15px 28px 20px !important; }
 }
 
@@ -454,7 +456,7 @@ p { margin: 0; }
   font-size: 0.75rem;
   top: 3px;
 }
-@media (max-width: 991px) { .ci-hero-text { margin: 0 auto; } }
+@media (max-width: 1099px) { .ci-hero-text { margin: 0 auto; max-width: none; } }
 
 @media (max-width: 767px) {
   .ci-portrait-wrap--full-mobile { display: block; max-width: calc(100% - 10px); }
@@ -478,7 +480,7 @@ p { margin: 0; }
 .order-6 { order: 6 !important; }
 @media (min-width: 768px) { .order-md-6 { order: 6 !important; } }
 
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
   .ci-hero-photo-col { flex: 0 0 54.17%; max-width: 54.17%; }
   .ci-hero-text-col  { flex: 0 0 45.83%; max-width: 45.83%; }
 }
@@ -570,6 +572,12 @@ p { margin: 0; }
 .ci-intro-break { display: none; }
 @media (min-width: 992px) {
   .ci-intro-break { display: block; }
+}
+
+/* Footnote break in certifications card — hidden on desktop, visible on smaller screens */
+.ci-footnote-break { display: block; }
+@media (min-width: 1100px) {
+  .ci-footnote-break { display: none; }
 }
 
 
@@ -1044,23 +1052,150 @@ a.ci-contact-value:focus-visible {
 
 /* ── 13. Responsive adjustments ────────────────────────────── */
 @media (max-width: 991px) {
-  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) - 16px) 0 60px; }
-  .ci-section { padding: 16px 0 72px; }
+  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) + 35px) 0 50px; }
+  .ci-section { padding: 31px 0 46px; }
+  #about.ci-section, #services.ci-section { padding-top: 31px; }
   .ci-form { padding: 28px 24px 18px; }
+  .ci-footer { padding: 20px 0 0; }
+  .ci-footer-nav { align-items: center; margin-top: 8px; }
+  .ci-footer-break { display: block; }
 }
 
 @media (max-width: 767px) {
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
-  .ci-hero { padding: calc(var(--ci-nav-h) + 35px) 0 50px; }
-  .ci-section { padding: 31px 0 46px; }
-  #about.ci-section, #services.ci-section { padding-top: 31px; }
   .ci-card { padding: 24px 20px; }
   .ci-service-card { padding: 28px 22px; }
-  .ci-footer { padding: 20px 0 0; }
-  .ci-footer-nav { align-items: center; margin-top: 8px; }
+  .ci-section-intro { padding-left: 12px; padding-right: 12px; }
+  .ci-hero-photo-wrap { width: calc(100% - 20px); margin-left: 10px; }
+  .ci-landscape-wrap { width: calc(100% - 20px); margin-left: 10px; }
+  .col-md-4, .col-md-8, .col-lg-4, .col-lg-8, .col-lg-5, .col-lg-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .ci-hero-photo-col, .ci-hero-text-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .ci-hero-photo-col { order: 1 !important; }
+  .ci-hero-text-col  { order: 2 !important; }
   .ci-logo-placeholder { width: 130px; height: 130px; }
+}
+
+/* Narrow windows 768–1099px (all orientations): force single-column hero */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .ci-hero-photo-col, .ci-hero-text-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .ci-hero-photo-col { order: 1 !important; }
+  .ci-hero-text-col  { order: 2 !important; }
+  .ci-hero-text { max-width: none; }
+  .ci-portrait-wrap--match {
+    display: block;
+    height: auto !important;
+    max-width: 100%;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
+  .ci-portrait-wrap--match .ci-portrait {
+    position: relative !important;
+    height: auto !important;
+    inset: auto !important;
+    width: 100%;
+  }
+  .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
+  .ci-hero-actions .ms-3 { margin-left: 0 !important; }
+  .ci-card { padding: 24px 20px !important; }
+  .ci-hero-card { padding: 24px 20px !important; }
+}
+
+/* Portrait tablets + square screens (≤991px portrait, or ≤1199px aspect ≤ 4/3) */
+@media (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+  .col-md-4, .col-md-8, .col-lg-4, .col-lg-8, .col-lg-5, .col-lg-7 {
+    flex: 0 0 100%; max-width: 100%;
+  }
+  .ci-hero-photo-col, .ci-hero-text-col { flex: 0 0 100% !important; max-width: 100% !important; }
+  .ci-hero-photo-col { order: 1 !important; }
+  .ci-hero-text-col  { order: 2 !important; }
+  .ci-hero-text { max-width: none; }
+  .ci-portrait-wrap--match { display: block; height: auto !important; max-width: 100%; width: calc(100% - 20px); margin: 0 auto; }
+  .ci-portrait-wrap--match .ci-portrait { position: relative !important; height: auto !important; inset: auto !important; width: 100%; }
+  .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  .ci-section-intro { padding-left: 12px; padding-right: 12px; }
+  .ci-hero-actions { display: flex; flex-direction: row !important; align-items: center; justify-content: center; gap: 12px; }
+  .ci-hero-actions .ci-btn { width: auto; max-width: none; }
+  .ci-hero-actions .ms-3 { margin-left: 12px !important; }
+  .ci-card { padding: 24px 20px !important; }
+  .ci-hero-card { padding: 24px 20px !important; }
+  /* Services: keep first two cards side-by-side, photo full-width below */
+  #services .row > .col-md-4:nth-child(1),
+  #services .row > .col-md-4:nth-child(2) { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .row > .col-md-4:nth-child(3) { flex: 0 0 100% !important; max-width: 100% !important; }
+  /* About: landscape photo — left-flush to card, ring right-flush to card */
+  #about .ci-landscape-wrap { margin-left: 0 !important; width: calc(100% - 10px) !important; max-width: none !important; }
+  /* About: intro+coaching col full-width on top, photo + badge same row below */
+  #about .col-md-8.order-md-2 { flex: 0 0 100% !important; max-width: 100% !important; order: 1 !important; }
+  #about .col-md-4:first-child { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
+  #about .order-md-5 { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: flex-end !important; }
+  #about .order-md-5 .ci-badge-wrap { margin-right: 10px !important; }
+  #about .ci-portrait-wrap--match-md { height: auto !important; flex-grow: 0; }
+  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: auto !important; }
+  /* About: certifications after photo+badge row */
+  #about .order-md-3 { order: 3 !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) and (max-aspect-ratio: 4/3) {
+  .col-md-4, .col-md-8, .col-lg-4, .col-lg-8, .col-lg-5, .col-lg-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .ci-hero-photo-col, .ci-hero-text-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .ci-hero-photo-col { order: 1 !important; }
+  .ci-hero-text-col  { order: 2 !important; }
+  .ci-hero-text { max-width: none; }
+  /* Fix photo — natural height, centered */
+  .ci-portrait-wrap--match {
+    display: block;
+    height: auto !important;
+    max-width: 100%;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
+  .ci-portrait-wrap--match .ci-portrait {
+    position: relative !important;
+    height: auto !important;
+    inset: auto !important;
+    width: 100%;
+  }
+  .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  .ci-section-intro { padding-left: 12px; padding-right: 12px; }
+  .ci-hero-actions { display: flex; flex-direction: row !important; align-items: center; justify-content: center; gap: 12px; }
+  .ci-hero-actions .ci-btn { width: auto; max-width: none; }
+  .ci-hero-actions .ms-3 { margin-left: 12px !important; }
+  .ci-card { padding: 24px 20px !important; }
+  .ci-hero-card { padding: 24px 20px !important; }
+  /* Services: keep first two cards side-by-side, photo full-width below */
+  #services .row > .col-md-4:nth-child(1),
+  #services .row > .col-md-4:nth-child(2) { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .row > .col-md-4:nth-child(3) { flex: 0 0 100% !important; max-width: 100% !important; }
+  /* About: landscape photo — left-flush to card, ring right-flush to card */
+  #about .ci-landscape-wrap { margin-left: 0 !important; width: calc(100% - 10px) !important; max-width: none !important; }
+  /* About: intro+coaching col full-width on top, photo + badge same row below */
+  #about .col-md-8.order-md-2 { flex: 0 0 100% !important; max-width: 100% !important; order: 1 !important; }
+  #about .col-md-4:first-child { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
+  #about .order-md-5 { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: flex-end !important; }
+  #about .order-md-5 .ci-badge-wrap { margin-right: 10px !important; }
+  #about .ci-portrait-wrap--match-md { height: auto !important; flex-grow: 0; }
+  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: auto !important; }
+  /* About: certifications after photo+badge row */
+  #about .order-md-3 { order: 3 !important; }
 }
 
 @media (max-width: 480px) {
