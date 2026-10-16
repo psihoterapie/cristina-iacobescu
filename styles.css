@@ -129,11 +129,11 @@ p { margin: 0; }
     box-shadow: var(--ci-shadow-md);
     padding: 12px 16px 16px;
   }
-  /* Logo centered, fixed to navbar bar */
+  /* Logo centered within the container between toggler and lang switcher */
   .ci-navbar .ci-brand {
-    position: fixed;
+    position: absolute;
     left: 50%;
-    top: calc(var(--ci-nav-h) / 2);
+    top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1020;
   }
