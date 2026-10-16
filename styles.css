@@ -247,7 +247,7 @@ p { margin: 0; }
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   background-color: var(--ci-bg);
   padding: calc(var(--ci-nav-h) + 15px) 0 80px;
@@ -756,8 +756,8 @@ p { margin: 0; }
 #services .ci-list li.ci-price-note:last-child {
   text-align: justify;
   text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 .ci-list li.ci-price-note::before { content: none; }
 .ci-list li::before {
@@ -1530,14 +1530,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   body { font-size: 12pt; }
 }
 
-/* Justified text: Services Nota card, About intro card, Home text card */
+/* Justified text: Services Nota card, About intro card, Home text card.
+   No hyphenation - words are never split, only the word spacing adjusts (RO and EN). */
 #services .ci-service-card--nota .ci-service-text,
 #about .ci-card:not(.ci-card--info) > .ci-card-body,
 .ci-hero-text p,
 .ci-hero-text .ci-hero-list li {
   text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 
 /* Squarish screens 1100-1199px: Nota card sits at 50% width next to the photo (2-row layout),
