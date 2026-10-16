@@ -66,7 +66,7 @@ a:hover { color: var(--ci-plum); }
 ul { padding: 0; margin: 0; list-style: none; }
 
 /* ── 3. Typography ─────────────────────────────────────────── */
-h1, h2, h3, h4,
+h1, h2,
 .ci-hero-tagline,
 #aboutHeading, #servicesHeading, #contactHeading, #heroHeading {
   font-family: var(--ci-font-display);
@@ -75,8 +75,13 @@ h1, h2, h3, h4,
   color: var(--ci-plum);
   margin: 0;
 }
-/* Only page titles (h1, h2) use the display font; card headers etc. use Inter */
-h3, h4 { font-family: var(--ci-font-body); }
+/* Card headers and subheadings use Inter with normal heading styling */
+h3, h4 {
+  font-family: var(--ci-font-body);
+  line-height: 1.2;
+  color: var(--ci-plum);
+  margin: 0;
+}
 
 h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
@@ -466,6 +471,9 @@ p { margin: 0; }
 @media (min-width: 768px) { .ci-badge-wrap { margin-right: auto; } }
 
 .ci-landscape-wrap { width: calc(100% - 20px); margin-left: 10px; }
+@media (max-width: 767px) {
+  #about .ci-landscape-wrap { width: calc(100% - 10px); margin-left: 0; }
+}
 @media (min-width: 768px) {
   .ci-landscape-wrap { width: auto; max-width: 697px; margin-left: 27px; }
 }
@@ -473,7 +481,14 @@ p { margin: 0; }
 /* Hero office photo: align with card margins on mobile */
 .ci-hero-photo-wrap { width: 100%; }
 @media (max-width: 767px) {
-  .ci-hero-photo-wrap { width: calc(100% - 20px); margin-left: 10px; }
+  #home .ci-hero-photo-wrap {
+    display: block;
+    flex-grow: 0;
+    align-self: flex-start;
+    width: calc(100% - 10px);
+    margin-left: 0;
+    max-width: none;
+  }
 }
 
 
@@ -554,7 +569,7 @@ p { margin: 0; }
   color: var(--ci-text-muted);
   max-width: 840px;
   margin: 0 auto;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 @media (max-width: 767px) {
   .ci-section-intro {
@@ -591,7 +606,7 @@ p { margin: 0; }
   padding: 13px 28px;
   font-family: var(--ci-font-body);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
   border-radius: var(--ci-radius-md);
   border: 1.5px solid transparent;
@@ -635,13 +650,14 @@ p { margin: 0; }
   background: rgba(118, 35, 94, 0.07);
   color: var(--ci-purple);
   border-color: transparent;
-  font-size: 0.825rem;
+  font-size: 0.875rem;
   padding: 9px 20px;
 }
 .ci-btn--soft:hover {
   background: var(--ci-purple);
   color: var(--ci-white);
 }
+
 
 /* ── 8. Cards ──────────────────────────────────────────────── */
 .ci-card {
@@ -688,19 +704,20 @@ p { margin: 0; }
 
 .ci-card h3 {
   font-size: 0.875rem; /* same as the menu links */
+  font-weight: 400;
   margin-bottom: 14px;
   color: var(--ci-plum);
 }
 
 .ci-card-body {
   color: var(--ci-text-muted);
-  font-size: 0.925rem;
+  font-size: 0.875rem;
   line-height: 1.75;
 }
 
 .ci-list li {
   color: var(--ci-text-muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   padding: 6px 0;
   border-bottom: 1px solid var(--ci-border);
   line-height: 1.5;
@@ -709,12 +726,14 @@ p { margin: 0; }
 #about .ci-list li { padding: 3px 0; }
 .ci-list li:last-child { border-bottom: none; }
 
+#services .ci-list li { padding: 12px 0; }
+#services .ci-list li.ci-price-note { padding: 6px 0; }
+
 /* Price footnote (e.g. free first session) */
 .ci-list li.ci-price-note {
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-style: italic;
   color: var(--ci-purple);
-  padding-top: 0;
 }
 .ci-list li.ci-price-note::before { content: none; }
 .ci-list li::before {
@@ -785,7 +804,7 @@ p { margin: 0; }
 .ci-service-title {
   font-family: var(--ci-font-body);
   font-size: 0.875rem; /* same as the menu links */
-  font-weight: 700;
+  font-weight: 680 !important;
   color: var(--ci-plum);
   line-height: 1.25;
   margin: 0;
@@ -793,9 +812,181 @@ p { margin: 0; }
 
 .ci-service-text {
   color: var(--ci-text-muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.7;
   flex-grow: 1;
+}
+
+.ci-nota-col-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ci-nota-col-text {
+  flex-grow: 1;
+}
+.ci-nota-col-btn {
+  margin-top: auto;
+}
+.ci-nota-inline-prefix {
+  display: none;
+}
+.ci-nota-inline-prefix strong {
+  color: var(--ci-plum);
+  font-weight: 680;
+}
+
+/* ── 9b. Services layout helpers ───────────────────────────── */
+/* Desktop: photo shadow frame right-flush to container */
+@media (min-width: 1100px) {
+  /* Services intro text wider on large desktop */
+  #services .ci-section-intro {
+    max-width: 1170px;
+  }
+
+  /* Increase equal spacing between row 1 items while keeping outer edges aligned */
+  #services .ci-services-row {
+    --bs-gutter-x: 2.25rem;
+  }
+
+  /* Price cards expand equally to fill the remaining row space */
+  #services .ci-services-price-col {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+  }
+
+  /* Price cards fit exact height matching 400px photo (+10px ring) on desktop */
+  #services .ci-services-price-col .ci-service-card {
+    padding: 14px 28px;
+    gap: 12px;
+    height: 410px;
+  }
+
+  /* Icon size on desktop */
+  #services .ci-services-price-col .ci-service-icon {
+    width: 50px;
+    height: 50px;
+    padding: 9px;
+  }
+
+  #services .ci-services-price-col .ci-service-title {
+    font-size: 0.875rem;
+  }
+
+  /* Bullet list fitting 410px card height */
+  #services .ci-services-price-col .ci-list {
+    margin-top: 20px !important;
+  }
+  #services .ci-services-price-col .ci-list li {
+    padding: 10px 0 !important;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  #services .ci-services-price-col .ci-list li.ci-price-note {
+    padding: 8px 0 !important;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* Button sits at bottom of card with 14px bottom padding */
+  #services .ci-services-price-col .ci-service-card .ci-btn {
+    padding: 9px 24px;
+    font-size: 0.875rem;
+    margin-top: auto;
+  }
+
+  /* Photo col takes natural aspect-ratio width and aligns to the right */
+  #services .ci-services-photo-col {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    text-align: right !important;
+  }
+  /* Shadow frame margin: 10px right-margin offsets the -10px ring to align flush with Nota card; 10px top margin aligns ring top with card top */
+  #services .ci-services-photo-col .ci-hero-photo-wrap {
+    width: auto;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px !important;
+    max-width: none;
+    height: 400px;
+    display: inline-block;
+  }
+  #services .ci-services-photo-col .ci-portrait {
+    height: 400px;
+    width: auto;
+    object-fit: cover;
+  }
+
+  /* Nota card 3 columns on large desktop (>=1100px) */
+  .ci-service-card--nota {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 28px;
+  }
+  .ci-service-card--nota .ci-nota-col-header {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .ci-service-card--nota .ci-nota-col-text {
+    flex: 1 1 auto;
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  .ci-service-card--nota .ci-service-text {
+    line-height: 1.45;
+  }
+  .ci-service-card--nota .ci-nota-col-btn {
+    flex: 0 0 calc(((100% - 40px) / 3) - 100px);
+    margin-top: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+  }
+  .ci-service-card--nota .ci-nota-col-btn .ci-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* col-lg-4 handles desktop; ensure single column below lg on non-squarish */
+@media (max-width: 991px) {
+  .ci-services-price-col,
+  .ci-services-nota-col,
+  .ci-services-photo-col { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Small screen (<1100px) and square screens: inline prefix, hide separate title, full width CTA */
+@media (max-width: 1099px) {
+  #services .ci-service-card--nota .ci-nota-col-header .ci-service-title { display: none !important; }
+  #services .ci-service-card--nota .ci-nota-inline-prefix { display: inline !important; }
+  #services .ci-service-card--nota .ci-nota-col-btn .ci-btn {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
+/* Services photo on small screen: left-aligned, ring right-flush to card */
+@media (max-width: 991px) {
+  #services .ci-services-photo-col {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+  #services .ci-services-photo-col .ci-hero-photo-wrap {
+    width: calc(100% - 10px);
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* ── 10. Contact section ───────────────────────────────────── */
@@ -1106,6 +1297,7 @@ a.ci-contact-value:focus-visible {
     width: 100%;
   }
   .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  #home .ci-hero-photo-wrap { margin-left: 0; margin-right: 0; width: calc(100% - 10px); }
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
@@ -1125,25 +1317,51 @@ a.ci-contact-value:focus-visible {
   .ci-portrait-wrap--match { display: block; height: auto !important; max-width: 100%; width: calc(100% - 20px); margin: 0 auto; }
   .ci-portrait-wrap--match .ci-portrait { position: relative !important; height: auto !important; inset: auto !important; width: 100%; }
   .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  #home .ci-hero-photo-wrap { margin-left: 0; margin-right: 0; width: calc(100% - 10px); }
   .ci-section-intro { padding-left: 12px; padding-right: 12px; }
   .ci-hero-actions { display: flex; flex-direction: row !important; align-items: center; justify-content: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: auto; max-width: none; }
   .ci-hero-actions .ms-3 { margin-left: 12px !important; }
   .ci-card { padding: 24px 20px !important; }
   .ci-hero-card { padding: 24px 20px !important; }
-  /* Services: keep first two cards side-by-side, photo full-width below */
-  #services .row > .col-md-4:nth-child(1),
-  #services .row > .col-md-4:nth-child(2) { flex: 0 0 50% !important; max-width: 50% !important; }
-  #services .row > .col-md-4:nth-child(3) { flex: 0 0 100% !important; max-width: 100% !important; }
+  /* Services squarish: card1+card2 at 50/50, nota+photo at 50/50 below */
+  #services .ci-services-price-col { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .ci-services-nota-col  { flex: 0 0 50% !important; max-width: 50% !important; order: 3 !important; }
+  #services .ci-services-photo-col {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    order: 4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    align-self: stretch !important;
+  }
+  #services .ci-services-photo-col .ci-hero-photo-wrap {
+    margin-top: 10px !important;
+    height: calc(100% - 12px) !important;
+    width: calc(100% - 10px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  #services .ci-services-photo-col .ci-portrait {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  /* Nota card on squarish: inline prefix, hide separate title */
+  #services .ci-service-card--nota .ci-nota-col-header .ci-service-title { display: none !important; }
+  #services .ci-service-card--nota .ci-nota-inline-prefix { display: inline !important; }
   /* About: landscape photo — left-flush to card, ring right-flush to card */
   #about .ci-landscape-wrap { margin-left: 0 !important; width: calc(100% - 10px) !important; max-width: none !important; }
   /* About: intro+coaching col full-width on top, photo + badge same row below */
   #about .col-md-8.order-md-2 { flex: 0 0 100% !important; max-width: 100% !important; order: 1 !important; }
-  #about .col-md-4:first-child { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
-  #about .order-md-5 { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: flex-end !important; }
-  #about .order-md-5 .ci-badge-wrap { margin-right: 10px !important; }
-  #about .ci-portrait-wrap--match-md { height: auto !important; flex-grow: 0; }
-  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: auto !important; }
+  #about .col-md-4:first-child { flex: 0 0 auto !important; width: 400px !important; max-width: 48% !important; order: 2 !important; align-self: stretch !important; justify-content: center !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+  #about .order-md-5 { flex: 0 0 auto !important; max-width: 45% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
+  #about .order-md-5 .ci-badge-wrap { margin-right: 0 !important; }
+  #about .row { justify-content: space-evenly; align-items: stretch; }
+  #about .ci-portrait-wrap--match-md { height: 100% !important; flex-grow: 1; display: flex; flex-direction: column; width: 100% !important; max-width: none !important; }
+  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: 100% !important; flex: 1 1 auto; object-fit: cover; object-position: top center; width: 100%; }
   /* About: certifications after photo+badge row */
   #about .order-md-3 { order: 3 !important; }
 }
@@ -1175,25 +1393,51 @@ a.ci-contact-value:focus-visible {
     width: 100%;
   }
   .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
+  #home .ci-hero-photo-wrap { margin-left: 0; margin-right: 0; width: calc(100% - 10px); }
   .ci-section-intro { padding-left: 12px; padding-right: 12px; }
   .ci-hero-actions { display: flex; flex-direction: row !important; align-items: center; justify-content: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: auto; max-width: none; }
   .ci-hero-actions .ms-3 { margin-left: 12px !important; }
   .ci-card { padding: 24px 20px !important; }
   .ci-hero-card { padding: 24px 20px !important; }
-  /* Services: keep first two cards side-by-side, photo full-width below */
-  #services .row > .col-md-4:nth-child(1),
-  #services .row > .col-md-4:nth-child(2) { flex: 0 0 50% !important; max-width: 50% !important; }
-  #services .row > .col-md-4:nth-child(3) { flex: 0 0 100% !important; max-width: 100% !important; }
+  /* Services squarish: card1+card2 at 50/50, nota+photo at 50/50 below */
+  #services .ci-services-price-col { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .ci-services-nota-col  { flex: 0 0 50% !important; max-width: 50% !important; order: 3 !important; }
+  #services .ci-services-photo-col {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    order: 4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    align-self: stretch !important;
+  }
+  #services .ci-services-photo-col .ci-hero-photo-wrap {
+    margin-top: 10px !important;
+    height: calc(100% - 12px) !important;
+    width: calc(100% - 10px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  #services .ci-services-photo-col .ci-portrait {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  /* Nota card on squarish: inline prefix, hide separate title */
+  #services .ci-service-card--nota .ci-nota-col-header .ci-service-title { display: none !important; }
+  #services .ci-service-card--nota .ci-nota-inline-prefix { display: inline !important; }
   /* About: landscape photo — left-flush to card, ring right-flush to card */
   #about .ci-landscape-wrap { margin-left: 0 !important; width: calc(100% - 10px) !important; max-width: none !important; }
   /* About: intro+coaching col full-width on top, photo + badge same row below */
   #about .col-md-8.order-md-2 { flex: 0 0 100% !important; max-width: 100% !important; order: 1 !important; }
-  #about .col-md-4:first-child { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
-  #about .order-md-5 { flex: 0 0 50% !important; max-width: 50% !important; order: 2 !important; align-self: center !important; justify-content: flex-end !important; }
-  #about .order-md-5 .ci-badge-wrap { margin-right: 10px !important; }
-  #about .ci-portrait-wrap--match-md { height: auto !important; flex-grow: 0; }
-  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: auto !important; }
+  #about .col-md-4:first-child { flex: 0 0 auto !important; width: 400px !important; max-width: 48% !important; order: 2 !important; align-self: stretch !important; justify-content: center !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+  #about .order-md-5 { flex: 0 0 auto !important; max-width: 45% !important; order: 2 !important; align-self: center !important; justify-content: center !important; }
+  #about .order-md-5 .ci-badge-wrap { margin-right: 0 !important; }
+  #about .row { justify-content: space-evenly; align-items: stretch; }
+  #about .ci-portrait-wrap--match-md { height: 100% !important; flex-grow: 1; display: flex; flex-direction: column; width: 100% !important; max-width: none !important; }
+  #about .ci-portrait-wrap--match-md .ci-portrait { position: relative !important; inset: auto !important; height: 100% !important; flex: 1 1 auto; object-fit: cover; object-position: top center; width: 100%; }
   /* About: certifications after photo+badge row */
   #about .order-md-3 { order: 3 !important; }
 }
