@@ -79,7 +79,7 @@ function translateAll(lang) {
         el.tagName === 'P'     || el.tagName === 'H1'   ||
         el.tagName === 'H2'    || el.tagName === 'H3'   ||
         el.tagName === 'LI'    || el.tagName === 'A'    ||
-        el.tagName === 'BUTTON') {
+        el.tagName === 'BUTTON' || el.tagName === 'U') {
       el.textContent = val;
     }
     // Inputs/textareas: update placeholder
@@ -126,25 +126,45 @@ function initActiveSection() {
 
   if (!navLinks.length || !sections.length) return;
 
-  const navH = parseInt(getComputedStyle(document.documentElement)
-    .getPropertyValue('--ci-nav-h'), 10) || 70;
+  // Derive the active section from the scroll position on every scroll, so the
+  // highlight can never get stuck (IntersectionObserver only reports crossings
+  // and could miss/mis-order them during fast smooth scrolls).
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const navH = parseInt(getComputedStyle(document.documentElement)
+      .getPropertyValue('--ci-nav-h'), 10) || 70;
+    // Reference line: same band as before (nav bottom → 40% of the viewport)
+    const line = navH + (window.innerHeight - navH) * 0.4;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.id;
-      navLinks.forEach(link => {
-        const isActive = link.getAttribute('href') === `#${id}`;
-        link.classList.toggle('active', isActive);
-        link.setAttribute('aria-current', isActive ? 'page' : 'false');
-      });
+    // Section whose top is the closest one at/above the reference line
+    // (independent of the order of the SECTIONS array)
+    let current = null;
+    let bestTop = -Infinity;
+    sections.forEach(s => {
+      const top = s.getBoundingClientRect().top;
+      if (top <= line && top > bestTop) { bestTop = top; current = s; }
     });
-  }, {
-    rootMargin: `-${navH}px 0px -60% 0px`,
-    threshold: 0
-  });
+    if (!current) current = sections[0];
+    // At the very bottom of the page, always highlight the last section on the page
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) current = document.getElementById('contact') || current;
 
-  sections.forEach(s => observer.observe(s));
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${current.id}`;
+      link.classList.toggle('active', isActive);
+      link.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+  };
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 }
 
 /* Extra px to scroll past the nav for each section (positive = further down) */

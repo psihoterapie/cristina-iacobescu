@@ -40,6 +40,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--ci-nav-h) - 20px);
   font-size: 16px;
+  /* Prevent mobile browsers from auto-inflating text differently per language/block length */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -715,12 +718,21 @@ p { margin: 0; }
   line-height: 1.75;
 }
 
+.ci-list {
+  width: 100%;
+  max-width: 100%;
+}
 .ci-list li {
   color: var(--ci-text-muted);
   font-size: 0.875rem;
   padding: 6px 0;
   border-bottom: 1px solid var(--ci-border);
   line-height: 1.5;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 #about .ci-list li { padding: 3px 0; }
@@ -728,12 +740,24 @@ p { margin: 0; }
 
 #services .ci-list li { padding: 12px 0; }
 #services .ci-list li.ci-price-note { padding: 6px 0; }
+#services .ci-list li:not(.ci-price-note) + li.ci-price-note { margin-top: 10px; }
 
 /* Price footnote (e.g. free first session) */
 .ci-list li.ci-price-note {
   font-size: 0.8125rem;
   font-style: italic;
   color: var(--ci-purple);
+  border-bottom: none;
+}
+.ci-list li.ci-price-note:last-child {
+  color: var(--ci-text-muted);
+}
+/* Services recommendation note: justified so its right edge is flush with the CTA button */
+#services .ci-list li.ci-price-note:last-child {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 .ci-list li.ci-price-note::before { content: none; }
 .ci-list li::before {
@@ -858,38 +882,44 @@ p { margin: 0; }
   /* Price cards fit exact height matching 400px photo (+10px ring) on desktop */
   #services .ci-services-price-col .ci-service-card {
     padding: 14px 28px;
-    gap: 12px;
-    height: 410px;
+    gap: 8px;
+    min-height: 410px;
+    height: 100%;
   }
 
   /* Icon size on desktop */
   #services .ci-services-price-col .ci-service-icon {
-    width: 50px;
-    height: 50px;
-    padding: 9px;
+    width: 46px;
+    height: 46px;
+    padding: 8px;
   }
 
   #services .ci-services-price-col .ci-service-title {
     font-size: 0.875rem;
   }
 
-  /* Bullet list fitting 410px card height */
+  /* Bullet list fitting card height */
   #services .ci-services-price-col .ci-list {
-    margin-top: 20px !important;
+    margin-top: 10px !important;
   }
   #services .ci-services-price-col .ci-list li {
-    padding: 10px 0 !important;
+    padding: 6px 0 !important;
     font-size: 0.875rem;
     line-height: 1.5;
   }
   #services .ci-services-price-col .ci-list li.ci-price-note {
-    padding: 8px 0 !important;
+    padding: 4px 0 !important;
     font-size: 0.8125rem;
-    line-height: 1.4;
+    line-height: 1.5;
+  }
+  /* Blank line gap above the first footer note (* Prima ședință...) */
+  #services .ci-services-price-col .ci-list li:not(.ci-price-note) + li.ci-price-note {
+    margin-top: 10px !important;
   }
 
   /* Button sits at bottom of card with 14px bottom padding */
   #services .ci-services-price-col .ci-service-card .ci-btn {
+    width: 100%;
     padding: 9px 24px;
     font-size: 0.875rem;
     margin-top: auto;
@@ -1326,6 +1356,9 @@ a.ci-contact-value:focus-visible {
   .ci-hero-card { padding: 24px 20px !important; }
   /* Services squarish: card1+card2 at 50/50, nota+photo at 50/50 below */
   #services .ci-services-price-col { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .ci-services-price-col .ci-list li:not(.ci-price-note) + li.ci-price-note {
+    margin-top: 10px !important;
+  }
   #services .ci-services-nota-col  { flex: 0 0 50% !important; max-width: 50% !important; order: 3 !important; }
   #services .ci-services-photo-col {
     flex: 0 0 50% !important;
@@ -1402,6 +1435,9 @@ a.ci-contact-value:focus-visible {
   .ci-hero-card { padding: 24px 20px !important; }
   /* Services squarish: card1+card2 at 50/50, nota+photo at 50/50 below */
   #services .ci-services-price-col { flex: 0 0 50% !important; max-width: 50% !important; }
+  #services .ci-services-price-col .ci-list li:not(.ci-price-note) + li.ci-price-note {
+    margin-top: 10px !important;
+  }
   #services .ci-services-nota-col  { flex: 0 0 50% !important; max-width: 50% !important; order: 3 !important; }
   #services .ci-services-photo-col {
     flex: 0 0 50% !important;
@@ -1492,4 +1528,48 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media print {
   .ci-navbar, .ci-hero-bg-circles, .ci-compass-ring, .ci-dot { display: none; }
   body { font-size: 12pt; }
+}
+
+/* Justified text: Services Nota card, About intro card, Home text card */
+#services .ci-service-card--nota .ci-service-text,
+#about .ci-card:not(.ci-card--info) > .ci-card-body,
+.ci-hero-text p,
+.ci-hero-text .ci-hero-list li {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Squarish screens 1100-1199px: Nota card sits at 50% width next to the photo (2-row layout),
+   so it must use the stacked layout (same as <1100px), not the 3-column desktop layout */
+@media (min-width: 1100px) and (max-width: 1199px) and (max-aspect-ratio: 4/3) {
+  #services .ci-service-card--nota {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 36px 28px;
+  }
+  #services .ci-service-card--nota .ci-nota-col-header {
+    flex: 0 0 auto;
+    align-items: flex-start;
+    text-align: left;
+    gap: 14px;
+  }
+  #services .ci-service-card--nota .ci-nota-col-text {
+    flex: 1 1 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #services .ci-service-card--nota .ci-service-text { line-height: 1.7; }
+  #services .ci-service-card--nota .ci-nota-col-btn {
+    flex: 0 0 auto;
+    margin-top: auto;
+    display: block;
+    padding-left: 0;
+  }
+  #services .ci-service-card--nota .ci-nota-col-btn .ci-btn {
+    width: 100% !important;
+    text-align: center;
+  }
 }
