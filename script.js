@@ -272,17 +272,18 @@ function sendContactEmail(form, lang) {
   const name = val('#fieldName');
 
   const now = new Date();
-  const bucharestFormatted = new Intl.DateTimeFormat('en-GB', {
+  const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Europe/Bucharest',
-    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
-    hour: '2-digit', minute: '2-digit', second: '2-digit',
-    hour12: false
-  }).format(now);
-  // Detect UTC+2 (EET winter) vs UTC+3 (EEST summer) via timeZoneName
+    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: '2-digit',
+    hour12: true
+  }).formatToParts(now);
+  const get = t => parts.find(p => p.type === t)?.value || '';
+  const bucharestFormatted = `${get('weekday')}, ${get('month')} ${get('day')}, ${get('year')} ${get('hour')}:${get('minute')} ${get('dayPeriod')}`;
   const tzName = new Intl.DateTimeFormat('en', { timeZone: 'Europe/Bucharest', timeZoneName: 'shortOffset' })
     .formatToParts(now).find(p => p.type === 'timeZoneName')?.value || '';
   const utcLabel = tzName.includes('+3') ? 'UTC+3 summer (EEST)' : 'UTC+2 winter (EET)';
-  const bucharestTime = `${bucharestFormatted} (${utcLabel})`;
+  const bucharestTime = `${bucharestFormatted} Bucharest time (${utcLabel})`;
 
   const payload = {
     'Nume / Name':       name,
