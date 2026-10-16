@@ -155,9 +155,19 @@ const SCROLL_OFFSETS = {
   '#contact':  35,
 };
 
+/* Helper to calculate fixed absolute document position regardless of viewport shifts */
+function getElementDocTop(el) {
+  let top = 0;
+  let curr = el;
+  while (curr) {
+    top += curr.offsetTop;
+    curr = curr.offsetParent;
+  }
+  return top;
+}
+
 /* ─── 5. Smooth scroll + close mobile menu ───────────────── */
 function initSmoothScroll() {
-  // Close Bootstrap collapse when a nav link is clicked on mobile
   const navCollapse = document.getElementById('navMenu');
   const toggler     = document.querySelector('.navbar-toggler');
 
@@ -169,19 +179,24 @@ function initSmoothScroll() {
 
       e.preventDefault();
 
-      // Close mobile menu if open
-      if (navCollapse && navCollapse.classList.contains('show')) {
-        toggler?.click();
-      }
-
-      // Scroll with offset for fixed nav + per-section extra (desktop only)
+      // Calculate absolute document position before layout transitions
       const navH        = parseInt(getComputedStyle(document.documentElement)
         .getPropertyValue('--ci-nav-h'), 10) || 70;
       const isSmall     = window.innerWidth <= 991;
       const extraOffset = isSmall ? 0 : (SCROLL_OFFSETS[hash] ?? 0);
-      const top         = target.getBoundingClientRect().top + window.scrollY - navH + extraOffset;
+      const top         = getElementDocTop(target) - navH + extraOffset;
 
-      window.scrollTo({ top, behavior: 'smooth' });
+      // Close mobile menu if open
+      if (navCollapse && navCollapse.classList.contains('show')) {
+        if (window.bootstrap?.Collapse) {
+          const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(navCollapse, { toggle: false });
+          bsCollapse.hide();
+        } else {
+          toggler?.click();
+        }
+      }
+
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     });
   });
 }
