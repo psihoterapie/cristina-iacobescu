@@ -271,12 +271,18 @@ function sendContactEmail(form, lang) {
   const val = sel => form.querySelector(sel)?.value.trim() || '';
   const name = val('#fieldName');
 
-  const bucharestTime = new Intl.DateTimeFormat('ro-RO', {
+  const now = new Date();
+  const bucharestFormatted = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/Bucharest',
-    year: 'numeric', month: '2-digit', day: '2-digit',
+    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
     hour: '2-digit', minute: '2-digit', second: '2-digit',
     hour12: false
-  }).format(new Date());
+  }).format(now);
+  // Detect UTC+2 (EET winter) vs UTC+3 (EEST summer) via timeZoneName
+  const tzName = new Intl.DateTimeFormat('en', { timeZone: 'Europe/Bucharest', timeZoneName: 'shortOffset' })
+    .formatToParts(now).find(p => p.type === 'timeZoneName')?.value || '';
+  const utcLabel = tzName.includes('+3') ? 'UTC+3 summer (EEST)' : 'UTC+2 winter (EET)';
+  const bucharestTime = `${bucharestFormatted} (${utcLabel})`;
 
   const payload = {
     'Nume / Name':       name,
