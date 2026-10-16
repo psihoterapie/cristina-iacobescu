@@ -50,6 +50,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.ci-card p,
+.ci-card .ci-card-body,
+.ci-hero-text p { line-height: 1.45; font-size: 0.92rem; }
+
 img, svg { display: block; }
 
 a {
@@ -189,7 +193,7 @@ p { margin: 0; }
   align-items: center;
   overflow: hidden;
   background-color: var(--ci-bg);
-  padding: calc(var(--ci-nav-h) + 60px) 0 80px;
+  padding: calc(var(--ci-nav-h) + 40px) 0 80px;
 }
 
 .ci-hero-inner { position: relative; z-index: 2; }
@@ -407,7 +411,7 @@ p { margin: 0; }
 
 /* ── 6. Shared section styles ──────────────────────────────── */
 .ci-section {
-  padding: 96px 0;
+  padding: 76px 0 96px;
 }
 .ci-section--light {
   background-color: var(--ci-bg-alt);
@@ -569,6 +573,8 @@ p { margin: 0; }
   border-bottom: 1px solid var(--ci-border);
   line-height: 1.5;
 }
+
+#about .ci-list li { padding: 3px 0; }
 .ci-list li:last-child { border-bottom: none; }
 
 /* Price footnote (e.g. free first session) */
@@ -889,8 +895,8 @@ a.ci-contact-value:focus-visible {
 
 /* ── 13. Responsive adjustments ────────────────────────────── */
 @media (max-width: 991px) {
-  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) + 40px) 0 60px; }
-  .ci-section { padding: 72px 0; }
+  .ci-hero { min-height: auto; padding: calc(var(--ci-nav-h) + 20px) 0 60px; }
+  .ci-section { padding: 52px 0 72px; }
   .ci-form { padding: 28px 24px; }
 }
 
@@ -898,7 +904,7 @@ a.ci-contact-value:focus-visible {
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
-  .ci-section { padding: 56px 0; }
+  .ci-section { padding: 36px 0 56px; }
   .ci-card { padding: 24px 20px; }
   .ci-service-card { padding: 28px 22px; }
   .ci-footer { padding: 40px 0 0; }
