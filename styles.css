@@ -1254,7 +1254,7 @@ a.ci-contact-value:focus-visible {
 
 @media (max-width: 767px) {
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
+  .ci-hero-actions .ci-btn { width: 100%; max-width: 340px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
   .ci-card { padding: 24px 20px; }
   .ci-service-card { padding: 28px 22px; }
@@ -1299,7 +1299,7 @@ a.ci-contact-value:focus-visible {
   .ci-hero-photo-wrap { width: calc(100% - 20px); margin: 0 auto; }
   #home .ci-hero-photo-wrap { margin-left: 0; margin-right: 0; width: calc(100% - 10px); }
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
+  .ci-hero-actions .ci-btn { width: 100%; max-width: 340px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
   .ci-card { padding: 24px 20px !important; }
   .ci-hero-card { padding: 24px 20px !important; }
