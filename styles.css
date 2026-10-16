@@ -415,6 +415,7 @@ p { margin: 0; }
 }
 .ci-hero-text p {
   margin-bottom: 0.75rem;
+  font-size: 14px;
 }
 .ci-hero-text p:has(+ .ci-hero-list) {
   margin-bottom: 0;
@@ -443,7 +444,7 @@ p { margin: 0; }
   position: relative;
   padding-left: 16px;
   margin-bottom: 4px;
-  font-size: 0.92rem;
+  font-size: 14px;
   color: var(--ci-text-muted);
   line-height: 1.5;
 }
