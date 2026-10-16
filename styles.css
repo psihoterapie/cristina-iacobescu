@@ -92,8 +92,35 @@ p { margin: 0; }
   transition: box-shadow var(--ci-transition);
 }
 
-/* Mobile menu dropdown — solid white background */
+/* Mobile lang switcher — sits to the right of the hamburger */
+.ci-lang-switcher--mobile {
+  margin-left: 8px;
+  z-index: 1050;
+  order: 3;
+}
 @media (max-width: 991px) {
+  .navbar-toggler { order: 2; }
+}
+
+/* Mobile: navbar layout + menu dropdown */
+@media (max-width: 991px) {
+  .ci-navbar {
+    position: fixed;
+  }
+  /* Keep container as single row — collapse goes absolutely below */
+  .ci-navbar .container {
+    flex-wrap: nowrap;
+    align-items: center;
+    height: var(--ci-nav-h);
+  }
+  /* Collapse drops absolutely below the navbar bar */
+  .ci-navbar .navbar-collapse {
+    position: absolute;
+    top: var(--ci-nav-h);
+    left: 0;
+    right: 0;
+    z-index: 1040;
+  }
   .ci-navbar .navbar-collapse.show,
   .ci-navbar .navbar-collapse.collapsing {
     background-color: var(--ci-white);
@@ -101,7 +128,14 @@ p { margin: 0; }
     border-bottom: 1px solid var(--ci-border);
     box-shadow: var(--ci-shadow-md);
     padding: 12px 16px 16px;
-    margin: 0 -12px;
+  }
+  /* Logo centered, fixed to navbar bar */
+  .ci-navbar .ci-brand {
+    position: fixed;
+    left: 50%;
+    top: calc(var(--ci-nav-h) / 2);
+    transform: translate(-50%, -50%);
+    z-index: 1020;
   }
 }
 
@@ -480,7 +514,7 @@ p { margin: 0; }
 
 /* ── 6. Shared section styles ──────────────────────────────── */
 .ci-section {
-  padding: 40px 0 96px;
+  padding: 40px 0 75px;
 }
 .ci-section--light {
   background-color: var(--ci-bg-alt);
@@ -909,7 +943,7 @@ a.ci-contact-value:focus-visible {
 .ci-footer {
   background: var(--ci-plum);
   color: rgba(255,255,255,0.75);
-  padding: 56px 0 0;
+  padding: 30px 0 0;
 }
 
 .ci-footer-brand { display: flex; flex-direction: column; gap: 4px; }
@@ -965,20 +999,40 @@ a.ci-contact-value:focus-visible {
 
 .ci-footer-link {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.85);
   transition: color var(--ci-transition);
 }
 .ci-footer-link:hover { color: var(--ci-lavender); }
 
+/* Static footer text — no hover colour change */
+.ci-footer-static {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+}
+
+/* PDF link — bold, no colour change on hover except lavender on "aici" */
+.ci-footer-pdf-link {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  text-decoration: none;
+}
+.ci-footer-pdf-link:hover {
+  color: rgba(255,255,255,0.85);
+}
+.ci-footer-pdf-link u {
+  text-decoration: underline;
+}
+
 .ci-footer-bottom {
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 20px 0;
   border-top: 1px solid rgba(255,255,255,0.1);
   text-align: center;
 }
 .ci-footer-copy {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.85);
   margin: 0;
 }
 

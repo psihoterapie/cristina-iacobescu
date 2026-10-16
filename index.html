@@ -30,6 +30,13 @@
         <span class="toggler-bar"></span>
       </button>
 
+      <!-- Language switcher (mobile only, outside collapse) -->
+      <div class="ci-lang-switcher ci-lang-switcher--mobile d-lg-none" role="group" aria-label="Language switcher">
+        <button class="ci-lang-btn active" data-lang-target="ro" aria-pressed="true">RO</button>
+        <span class="ci-lang-sep" aria-hidden="true">|</span>
+        <button class="ci-lang-btn" data-lang-target="en" aria-pressed="false">EN</button>
+      </div>
+
       <!-- Nav links -->
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
@@ -39,8 +46,8 @@
           <li class="nav-item"><a class="nav-link" href="#contact" data-ro="Contact" data-en="Contact">Contact</a></li>
         </ul>
 
-        <!-- Language switcher -->
-        <div class="ci-lang-switcher ms-lg-4 mt-3 mt-lg-0" role="group" aria-label="Language switcher">
+        <!-- Language switcher (desktop only, inside collapse) -->
+        <div class="ci-lang-switcher ms-lg-4 mt-3 mt-lg-0 d-none d-lg-flex" role="group" aria-label="Language switcher">
           <button class="ci-lang-btn active" data-lang-target="ro" aria-pressed="true">RO</button>
           <span class="ci-lang-sep" aria-hidden="true">|</span>
           <button class="ci-lang-btn" data-lang-target="en" aria-pressed="false">EN</button>
@@ -428,8 +435,8 @@
 
         <div class="col-12 text-center">
           <nav class="ci-footer-nav align-items-center" aria-label="Footer navigation">
-            <span class="ci-footer-link">
-              <span data-ro="Termeni, condiții și politică de confidențialitate – " data-en="Terms, conditions and privacy policy – ">Termeni, condiții și politică de confidențialitate – </span><a href="Contract-de-prestari-servicii-psihologice-si-formular-GDPR-consimtire-evaluare-2026-10.pdf" class="ci-footer-link" target="_blank" rel="noopener noreferrer"><span data-ro="vezi " data-en="see ">vezi </span><strong data-ro="aici" data-en="here">aici</strong><span data-ro=" model contract și acord GDPR." data-en=" the sample contract and GDPR consent form."> model contract și acord GDPR.</span></a>
+            <span class="ci-footer-static">
+              <span data-ro="Termeni, condiții și politică de confidențialitate. " data-en="Terms, conditions and privacy policy. ">Termeni, condiții și politică de confidențialitate. </span><a href="Contract-de-prestari-servicii-psihologice-si-formular-GDPR-consimtire-evaluare-2026-10.pdf" class="ci-footer-pdf-link" target="_blank" rel="noopener noreferrer"><span data-ro="Vezi " data-en="See ">Vezi </span><strong data-ro="aici" data-en="here"><u>aici</u></strong><span data-ro=" model contract și acord GDPR." data-en=" the sample contract and GDPR consent form."> model contract și acord GDPR.</span></a>
             </span>
           </nav>
         </div>
