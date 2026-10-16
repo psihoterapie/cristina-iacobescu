@@ -111,7 +111,7 @@ p { margin: 0; }
   .ci-navbar .container {
     flex-wrap: nowrap;
     align-items: center;
-    height: var(--ci-nav-h);
+    position: relative;
   }
   /* Collapse drops absolutely below the navbar bar */
   .ci-navbar .navbar-collapse {
@@ -1004,6 +1004,12 @@ a.ci-contact-value:focus-visible {
 }
 .ci-footer-link:hover { color: var(--ci-lavender); }
 
+/* Footer line break — mobile only */
+.ci-footer-break { display: none; }
+@media (max-width: 767px) {
+  .ci-footer-break { display: block; }
+}
+
 /* Static footer text — no hover colour change */
 .ci-footer-static {
   font-size: 0.8rem;
@@ -1047,12 +1053,12 @@ a.ci-contact-value:focus-visible {
   .ci-hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .ci-hero-actions .ci-btn { width: 100%; max-width: 280px; }
   .ci-hero-actions .ms-3 { margin-left: 0 !important; }
-  .ci-hero { padding: calc(var(--ci-nav-h) + 35px) 0 60px; }
-  .ci-section { padding: 41px 0 56px; }
-  #about.ci-section, #services.ci-section { padding-top: 41px; }
+  .ci-hero { padding: calc(var(--ci-nav-h) + 35px) 0 50px; }
+  .ci-section { padding: 31px 0 46px; }
+  #about.ci-section, #services.ci-section { padding-top: 31px; }
   .ci-card { padding: 24px 20px; }
   .ci-service-card { padding: 28px 22px; }
-  .ci-footer { padding: 40px 0 0; }
+  .ci-footer { padding: 20px 0 0; }
   .ci-footer-nav { align-items: center; margin-top: 8px; }
   .ci-logo-placeholder { width: 130px; height: 130px; }
 }
