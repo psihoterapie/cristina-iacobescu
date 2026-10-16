@@ -108,17 +108,17 @@ p { margin: 0; }
 @media (max-width: 991px) {
   .ci-navbar {
     position: fixed;
+    overflow: visible;
   }
   /* Keep container as single row — collapse goes absolutely below */
   .ci-navbar .container {
     flex-wrap: nowrap;
     align-items: center;
-    position: relative;
   }
   /* Collapse drops absolutely below the navbar bar */
   .ci-navbar .navbar-collapse {
     position: absolute;
-    top: var(--ci-nav-h);
+    top: 100%;
     left: 0;
     right: 0;
     z-index: 1040;
