@@ -291,7 +291,7 @@ function sendContactEmail(form, lang) {
     'Telefon / Phone':   val('#fieldPhone') || '-',
     'Mesaj / Message':   val('#fieldMessage'),
     'Limba / Language':  lang === 'ro' ? 'Română' : 'English',
-    'Trimis la (București)': bucharestTime,
+    'Trimis la': bucharestTime,
     _subject:  `Mesaj nou de pe site – ${name}`,
     _template: 'table',
     _captcha:  'false'
